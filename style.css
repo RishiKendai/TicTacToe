@@ -1,0 +1,211 @@
+*,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+:root {
+  --cell-size: 100px;
+  --mark-size: calc((var(--cell-size) * 0.9));
+}
+
+body {
+  height: 100vh;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* HEADING */
+h4 {
+  color: #d65db1;
+  margin: 2% auto 4%;
+  font-family: inherit;
+  font: 800 41px 'Roboto Slab', serif;
+  letter-spacing: 1.3px;
+}
+
+/* BOARD */
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+}
+
+/* CELL */
+.cell {
+  --border-size: 2px;
+  --border-color: hsl(318, 50%, 54%);
+
+  cursor: pointer;
+  width: var(--cell-size);
+  height: var(--cell-size);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* XO PATTERN   */
+.cell:not(:nth-child(3n)) {
+  border-right: var(--border-size) solid var(--border-color);
+}
+.cell:nth-child(-n + 6) {
+  border-bottom: var(--border-size) solid var(--border-color);
+}
+
+/* DONT ALLOW CURSOR ON DRAWN CELL */
+.cell.x,
+.cell.o {
+  cursor: not-allowed;
+}
+
+/* COLOR FOR 'X' AND 'O' */
+.cell.x::before,
+.cell.x::after,
+.cell.o::before {
+  background-color: hsl(346, 100%, 72%);
+}
+
+/* HOVER COLOR FOR 'X' AND 'O' */
+.board.x .cell:not(.x):not(.o):hover::before,
+.board.x .cell:not(.x):not(.o):hover::after,
+.board.o .cell:not(.x):not(.o):hover::before {
+  background-color: hsl(346, 100%, 94%);
+}
+
+/*  DRAW 'X' AND HOVER 'X' WHEN THE CELL HAS NO CLASS NAME  */
+.board.x .cell:not(.x):not(.o):hover::before,
+.board.x .cell:not(.x):not(.o):hover::after,
+.cell.x::before,
+.cell.x::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  width: calc(var(--mark-size) * 0.15);
+  height: var(--mark-size);
+}
+.board.x .cell:not(.x):not(.o):hover::before,
+.cell.x::before {
+  transform: rotate(45deg);
+}
+.board.x .cell:not(.x):not(.o):hover::after,
+.cell.x::after {
+  transform: rotate(-45deg);
+}
+
+/*  DRAW '0' AND HOVER 'O' WHEN THE CELL HAS NO CLASS NAME  */
+.board.o .cell:not(.x):not(.o):hover::before,
+.board.o .cell:not(.x):not(.o):hover::after,
+.cell.o::before,
+.cell.o::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+}
+.board.o .cell:not(.x):not(.o):hover::before,
+.cell.o::before {
+  width: var(--mark-size);
+  height: var(--mark-size);
+}
+.board.o .cell:not(.x):not(.o):hover::after,
+.cell.o::after {
+  width: calc(var(--mark-size) * 0.7);
+  height: calc(var(--mark-size) * 0.7);
+  background-color: #ffffff;
+}
+
+/* STRIKE LINE */
+.strike.vertical::after,
+.strike.vertical::before,
+.strike.horizontal::after,
+.strike.horizontal::before,
+.strike.diagonal-left::after,
+.strike.diagonal-left::before,
+.strike.diagonal-right::after,
+.strike.diagonal-right::before {
+  content: '';
+  top: 5px;
+  position: absolute;
+  width: calc(var(--mark-size) * 0.08);
+  height: var(--mark-size);
+  background-color: #ff9671;
+  z-index: 1;
+}
+
+/* STRIKE VERTICAL */
+.strike.vertical::after {
+  transform: translateY(8px);
+}
+.strike.vertical::before {
+  transform: translateY(-8px);
+}
+
+/* STRIKE HORIZONTAL */
+.strike.horizontal::after {
+  transform: rotate(90deg) translateY(8px);
+}
+.strike.horizontal::before {
+  transform: rotate(90deg) translateY(-8px);
+}
+
+/* STRIKE DIAGONAL LEFT */
+.strike.diagonal-left::after {
+  transform: rotate(-45deg) translateY(28px);
+}
+.strike.diagonal-left::before {
+  transform: rotate(-45deg) translateY(-28px);
+}
+
+/* STRIKE DIAGONAL RIGHT */
+.strike.diagonal-right::after {
+  transform: rotate(45deg) translateY(28px);
+}
+.strike.diagonal-right::before {
+  transform: rotate(45deg) translateY(-28px);
+}
+
+/* RESULT TAB OR WINNING TAB */
+.winningMessgeTab {
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: none;
+  flex-direction: column;
+  inset: 0;
+  justify-content: center;
+  position: fixed;
+  user-select: none;
+  z-index: 2;
+}
+.winningMessgeTab.show {
+  display: flex;
+}
+
+/* WINNING MESSAGE */
+.winningMessageText {
+  color: #ffffff;
+  font: 700 3rem 'Roboto Slab', serif;
+}
+
+/* RESTART BUTTON */
+.restart {
+  background-color: #ffffff34;
+  border: none;
+  border-radius: 9px;
+  box-shadow: 6px 6px 12px #626262e6;
+  color: #ffffffac;
+  cursor: pointer;
+  font: 700 2rem 'Montserrat', sans-serif;
+  margin: 15px auto;
+  outline: none;
+  padding: 0.25rem 0.5rem;
+}
+
+/* HOVER RESTART BUTTON */
+.restart:hover {
+  color: #ffffff;
+  background-color: #ffffff64;
+}
