@@ -22,23 +22,53 @@ body {
 
 /* HEADING */
 h4 {
-  color: #d65db1;
-  margin: 2% auto 4%;
+  color: #2f4858;
+  margin: 0 auto 4%;
   font-family: inherit;
   font: 800 41px 'Roboto Slab', serif;
   letter-spacing: 1.3px;
 }
 
+/* MAIN BOARD */
+.main-board {
+  display: grid;
+  grid-template-areas:
+    'turns'
+    'board'
+    'scoreBoard';
+}
 /* BOARD */
 .board {
   display: grid;
+  grid-area: board;
   grid-template-columns: repeat(3, auto);
+  margin-bottom: 2rem;
+}
+/* SCOREBOARD */
+.scoreBoard {
+  display: flex;
+  justify-content: center;
+  grid-area: scoreBoard;
+}
+.scoreTab {
+  display: block;
+  padding: 0 0.8rem;
+  margin: 0 auto;
+  text-align: center;
+}
+.scoreTab h5 {
+  font: 700 1.3rem 'Segoe UI', Verdana, sans-serif;
+  color: #2b4250;
+}
+.scoreTab .score {
+  color: #90aabb;
+  font: 900 1.2rem Verdana, sans-serif;
 }
 
 /* CELL */
 .cell {
   --border-size: 2px;
-  --border-color: hsl(318, 50%, 54%);
+  --border-color: #1c2c36;
 
   cursor: pointer;
   width: var(--cell-size);
@@ -67,14 +97,14 @@ h4 {
 .cell.x::before,
 .cell.x::after,
 .cell.o::before {
-  background-color: hsl(346, 100%, 72%);
+  background-color: #416379;
 }
 
 /* HOVER COLOR FOR 'X' AND 'O' */
 .board.x .cell:not(.x):not(.o):hover::before,
 .board.x .cell:not(.x):not(.o):hover::after,
 .board.o .cell:not(.x):not(.o):hover::before {
-  background-color: hsl(346, 100%, 94%);
+  background-color: #99afbd;
 }
 
 /*  DRAW 'X' AND HOVER 'X' WHEN THE CELL HAS NO CLASS NAME  */
@@ -192,11 +222,11 @@ h4 {
 
 /* RESTART BUTTON */
 .restart {
-  background-color: #ffffff34;
+  background-color: #f78b3d;
   border: none;
   border-radius: 9px;
-  box-shadow: 6px 6px 12px #626262e6;
-  color: #ffffffac;
+  box-shadow: 4px 5px 11px #ffffffa6 inset, 5px 8px 15px #0000004b;
+  color: #ffffff;
   cursor: pointer;
   font: 700 2rem 'Montserrat', sans-serif;
   margin: 15px auto;
@@ -205,7 +235,75 @@ h4 {
 }
 
 /* HOVER RESTART BUTTON */
-.restart:hover {
-  color: #ffffff;
-  background-color: #ffffff64;
+.restart:active,
+.restart:focus {
+  transform: translateY(4px) scale(0.9);
+}
+
+/* TURNS */
+.turns-section {
+  grid-area: turns;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: calc(var(--cell-size) * 3);
+  margin: 0 0 25px 0;
+  align-self: flex-start;
+  padding: 0.3rem 0.4rem;
+}
+.xT,
+.oT {
+  font: 700 1.3rem 'Segoe UI', Verdana, sans-serif;
+  color: #2b4250;
+  cursor: pointer;
+}
+.xT.active,
+.oT.active {
+  color: #d64053;
+  height: 30px;
+  position: relative;
+}
+
+.xT::after,
+.oT::after {
+  position: absolute;
+  height: 3px;
+  content: '';
+  right: 0;
+  bottom: 0;
+  width: 0;
+  visibility: hidden;
+  border-radius: 5px;
+  background-color: #d64053;
+  transition: width 350ms ease-in-out;
+}
+.oT::after {
+  inset: auto auto 0 0;
+}
+.xT.active::after,
+.oT.active::after {
+  width: 100%;
+  visibility: visible;
+}
+
+/* RESPONSIVENESS */
+/* MEDIA-MD */
+@media screen and (min-width: 768px) {
+  /* MAIN BOARD */
+  .main-board {
+    display: grid;
+    grid-template-areas:
+      'board turns'
+      'board scoreBoard';
+    grid-template-rows: 70px;
+  } /* BOARD */
+  .board {
+    margin: 0 2rem 0 0;
+  }
+}
+/* MEDIA-LG */
+@media screen and (min-width: 1024px) {
+}
+/* MEDIA-XL */
+@media screen and (min-width: 1600px) {
 }

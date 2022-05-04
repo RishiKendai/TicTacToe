@@ -17,18 +17,39 @@
   </head>
   <body>
     <h4>Tic Tac Toe</h4>
-    <!-- BOARD -->
-    <div board class="board">
-      <!-- CELLS -->
-      <div class="cell" data-cell><div class="strike"></div></div>
-      <div class="cell" data-cell><div class="strike"></div></div>
-      <div class="cell" data-cell><div class="strike"></div></div>
-      <div class="cell" data-cell><div class="strike"></div></div>
-      <div class="cell" data-cell><div class="strike"></div></div>
-      <div class="cell" data-cell><div class="strike"></div></div>
-      <div class="cell" data-cell><div class="strike"></div></div>
-      <div class="cell" data-cell><div class="strike"></div></div>
-      <div class="cell" data-cell><div class="strike"></div></div>
+    <!-- BOARD AND RESULTS -->
+    <div class="main-board">
+    <!-- TURNS -->
+    <div class="turns-section">
+      <h5 class="xT active">X's Turn</h5>
+      <h5 class="oT">O's Turn</h5>
+    </div>
+      <div board class="board">
+        <!-- CELLS -->
+        <div class="cell" data-cell><div class="strike"></div></div>
+        <div class="cell" data-cell><div class="strike"></div></div>
+        <div class="cell" data-cell><div class="strike"></div></div>
+        <div class="cell" data-cell><div class="strike"></div></div>
+        <div class="cell" data-cell><div class="strike"></div></div>
+        <div class="cell" data-cell><div class="strike"></div></div>
+        <div class="cell" data-cell><div class="strike"></div></div>
+        <div class="cell" data-cell><div class="strike"></div></div>
+        <div class="cell" data-cell><div class="strike"></div></div>
+      </div>
+      <div class="scoreBoard">
+        <div class="scoreTab xS">
+          <h5>X's Score</h5>
+          <span class="x score"></span>
+        </div>
+        <div class="scoreTab oS">
+          <h5>O's Score</h5>
+          <span class="o score"></span>
+        </div>
+        <div class="scoreTab dS">
+          <h5>Draw</h5>
+          <span class="d score"></span>
+        </div>
+      </div>
     </div>
     <!-- WINNING TAB -->
     <div class="winningMessgeTab">

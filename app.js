@@ -1,6 +1,9 @@
 // CONSTANTS
 const X_CLASS = 'x';
 const O_CLASS = 'o';
+let X_SCORE = 0;
+let O_SCORE = 0;
+let DRAW_SCORE = 0;
 let circleTurn;
 let checkCombo = [];
 const WINNING_COMBO = [
@@ -33,6 +36,11 @@ const board = document.querySelector('[board]');
 const winningMessgeTab = document.querySelector('.winningMessgeTab');
 const winningMessageText = document.querySelector('.winningMessageText');
 const restart = document.querySelector('.restart');
+const xTurn = document.querySelector('.xT');
+const oTurn = document.querySelector('.oT');
+const xScore = document.querySelector('.x.score');
+const oScore = document.querySelector('.o.score');
+const dScore = document.querySelector('.d.score');
 
 // CHECK DIRECTION  AND STRIKE LINE
 function checkSide() {
@@ -58,6 +66,11 @@ startGame();
 
 // EVENT LISTENER
 restart.addEventListener('click', startGame);
+
+// SET INITIAL SCORE
+xScore.textContent = X_SCORE;
+oScore.textContent = O_SCORE;
+dScore.textContent = DRAW_SCORE;
 
 // ------ APP STARTS HERE -------
 function startGame() {
@@ -119,8 +132,14 @@ function checkWin(currentClass) {
 function endGame(draw) {
   if (draw) {
     winningMessageText.textContent = 'Draw';
+    dScore.textContent = DRAW_SCORE = DRAW_SCORE + 1;
   } else {
     winningMessageText.textContent = `${circleTurn ? "O's" : "X's"} Win`;
+    circleTurn
+      ? (oScore.textContent = O_SCORE = O_SCORE + 1)
+      : (xScore.textContent = X_SCORE = X_SCORE + 1);
+    console.log(oScore.textContent);
+    console.log(xScore.textContent);
   }
   setTimeout(() => {
     winningMessgeTab.classList.add('show');
@@ -128,8 +147,21 @@ function endGame(draw) {
 }
 
 // SWAP TURN
+
+xTurn.addEventListener('click', () => {
+  oTurn.classList.toggle('active');
+  xTurn.classList.toggle('active');
+});
+
 function swapTurns() {
   circleTurn = !circleTurn;
+  if (circleTurn) {
+    xTurn.classList.remove('active');
+    oTurn.classList.add('active');
+  } else {
+    oTurn.classList.remove('active');
+    xTurn.classList.add('active');
+  }
 }
 
 // FUNCTION TO HOVER 'X' OR 'O' ON CELL
