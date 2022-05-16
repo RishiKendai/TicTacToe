@@ -145,7 +145,7 @@ function endGame(draw) {
   }
   setTimeout(() => {
     winningMessgeTab.classList.add('show');
-  }, 1200);
+  }, 100);
 }
 
 // SWAP TURN

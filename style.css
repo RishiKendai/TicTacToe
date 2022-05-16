@@ -47,8 +47,19 @@ h4 {
 /* SCOREBOARD */
 .scoreBoard {
   display: flex;
+  padding: 5px 0;
+  height: auto;
+  align-self:center;
   justify-content: center;
   grid-area: scoreBoard;
+  background-color: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.33);
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
 }
 .scoreTab {
   display: block;
@@ -58,10 +69,10 @@ h4 {
 }
 .scoreTab h5 {
   font: 700 1.3rem 'Segoe UI', Verdana, sans-serif;
-  color: #2b4250;
+  color: #ffffff;
 }
 .scoreTab .score {
-  color: #90aabb;
+  color: #2b4250;
   font: 900 1.2rem Verdana, sans-serif;
 }
 
