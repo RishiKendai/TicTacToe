@@ -150,11 +150,6 @@ function endGame(draw) {
 
 // SWAP TURN
 
-xTurn.addEventListener('click', () => {
-  oTurn.classList.toggle('active');
-  xTurn.classList.toggle('active');
-});
-
 function swapTurns() {
   circleTurn = !circleTurn;
   if (circleTurn) {

@@ -49,7 +49,7 @@ h4 {
   display: flex;
   padding: 5px 0;
   height: auto;
-  align-self:center;
+  align-self: center;
   justify-content: center;
   grid-area: scoreBoard;
   background-color: rgba(0, 0, 0, 0.45);
@@ -58,8 +58,6 @@ h4 {
   border: 1px solid rgba(0, 0, 0, 0.08);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.33);
   border-radius: 5px;
-  position: relative;
-  overflow: hidden;
 }
 .scoreTab {
   display: block;
@@ -260,13 +258,23 @@ h4 {
   width: calc(var(--cell-size) * 3);
   margin: 0 0 25px 0;
   align-self: flex-start;
-  padding: 0.3rem 0.4rem;
+  padding: 15px 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.45),
+    rgba(0, 0, 0, 0.35)
+  );
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(0, 0, 0, 0.01);
+  box-shadow: 0 15px 20px rgba(0, 0, 0, 0.33);
+  border-radius: 5px;
 }
 .xT,
 .oT {
   font: 700 1.3rem 'Segoe UI', Verdana, sans-serif;
   color: #2b4250;
-  cursor: pointer;
+  color: #ffffffd6;
 }
 .xT.active,
 .oT.active {
@@ -282,6 +290,7 @@ h4 {
   content: '';
   right: 0;
   bottom: 0;
+
   width: 0;
   visibility: hidden;
   border-radius: 5px;
